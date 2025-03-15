@@ -1,0 +1,1 @@
+CREATE TABLE cliente(nome VARCHAR(100)NOT NULL);
