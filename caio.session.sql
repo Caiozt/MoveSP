@@ -1,4 +1,8 @@
+USE movesp;
+
 DROP TABLE cliente;
+
+DROP TABLE plano;
 
 CREATE TABLE cliente(
     ID INT AUTO_INCREMENT PRIMARY KEY,
