@@ -1,15 +1,22 @@
+
 import mysql.connector
 from datetime import datetime
 
-conn = mysql.connector.connect(host="localhost", user="root", password="caio1234", database="movesp")
+conn = mysql.connector.connect(host="localhost", user="root", password="caio", database="movesp")
 cursor = conn.cursor()
 
-query = """
-    UPDATE compras
-    SET status = 'expirado'
-    WHERE status = 'ativo' AND data_expiracao <= NOW();
+
+update = """
+    UPDATE cliente
+    SET Email = 'caiosantos@gmail.com'
+    WHERE ID = 1;
 """
-cursor.execute(query)
+
+#UPDATE compras
+#    SET status = 'expirado'
+#    WHERE status = 'ativo' AND data_expiracao <= NOW();
+
+cursor.execute(update)
 conn.commit()
 cursor.close()
 conn.close()
