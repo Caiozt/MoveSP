@@ -58,28 +58,27 @@ SELECT
 FROM compras;
 
 --Para chamar o VIEW
-SELECT * FROM compras_view;
+SELECT * FROM Plano;
 
 --INSERÇÂO DE DADOS
 
 INSERT INTO cliente (Nome, CPF, Data_nascimeto, Email, Senha) 
-VALUES('Caio Santos', '301.707.250-90', '2004-10-31', 'caio.santos@gmail.com', 'cs1234');
+VALUES('Vitoria Maria', '130.496.500-79', '2006-07-25', 'vitora.maria@gmail.com', 'vm1234');
 
 SELECT * FROM cliente;
 
 --Vou deixar o Text em branco e depois fazer UPDATE
 INSERT INTO plano (Nome, Preco, Duracao) 
-VALUES('Mensal', 10.50, 30),
-('Anual', 8.50, 365);
+VALUES('Dia', 0.50, 1);
 
 UPDATE plano
 SET Beneficios = ''
 WHERE id = 1;
 
-SELECT * FROM plano;
+SELECT * FROM Plano;
 
 INSERT INTO compras (cliente_id, plano_id, Nome_cartao, Numero_cartao, Expiracao_cartao, CVC, Duracao_pl)
-VALUES (1, 1, 'Caio Santos', 1234, '2034-10-31', 123, (SELECT Duracao FROM plano WHERE ID = 1));
+VALUES (3, 2, 'Vitoria Maria', 3333, '2045-10-31', 123, (SELECT Duracao FROM plano WHERE ID = 2));
 
 SELECT * FROM compras_view;
 

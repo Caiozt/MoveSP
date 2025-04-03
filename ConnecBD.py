@@ -7,7 +7,7 @@ import seaborn as sns
 conn = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="caio1234",
+    password="caio",
     database="movesp"
 )
 
@@ -16,7 +16,7 @@ cursor = conn.cursor()
 query = """
 SELECT DATE_FORMAT(data_compra, '%Y-%m') AS mes, SUM(preco) AS receita_total
 FROM compras 
-JOIN planos ON compras.plano_id = planos.id
+JOIN plano ON compras.plano_id = plano.id
 WHERE status = 'ativo'
 GROUP BY mes
 ORDER BY mes;

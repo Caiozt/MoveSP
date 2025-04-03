@@ -8,7 +8,7 @@ cursor = conn.cursor()
 
 update = """
     UPDATE cliente
-    SET Email = 'caiosantos@gmail.com'
+    SET Email = 'caio.santos@gmail.com'
     WHERE ID = 1;
 """
 
