@@ -57,13 +57,16 @@ SELECT
     END AS status_atual
 FROM compras;
 
+SHOW CREATE EVENT atualizar_status_expirado;
+
+SET GLOBAL event_scheduler =ON;
 --Para chamar o VIEW
 SELECT * FROM Plano;
 
 --INSERÇÂO DE DADOS
 
 INSERT INTO cliente (Nome, CPF, Data_nascimeto, Email, Senha) 
-VALUES('Vitoria Maria', '130.496.500-79', '2006-07-25', 'vitora.maria@gmail.com', 'vm1234');
+VALUES('Camila Santos', '301.334.530-65', '2000-11-20', 'camila.santos@gmail.com', 'cas1234');
 
 SELECT * FROM cliente;
 
@@ -78,9 +81,9 @@ WHERE id = 1;
 SELECT * FROM Plano;
 
 INSERT INTO compras (cliente_id, plano_id, Nome_cartao, Numero_cartao, Expiracao_cartao, CVC, Duracao_pl)
-VALUES (3, 2, 'Vitoria Maria', 3333, '2045-10-31', 123, (SELECT Duracao FROM plano WHERE ID = 2));
+VALUES (5, 1, 'Camila Santos', 1248, '2030-10-31', 235, (SELECT Duracao FROM plano WHERE ID = 1));
 
-SELECT * FROM compras_view;
+SELECT * FROM compras;
 
 UPDATE compras
 SET Numero_cartao = 1234567812345678

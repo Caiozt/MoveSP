@@ -5,16 +5,11 @@ from datetime import datetime
 conn = mysql.connector.connect(host="localhost", user="root", password="caio", database="movesp")
 cursor = conn.cursor()
 
-
+#atualiza os statu da compra'   \
 update = """
-    UPDATE cliente
-    SET Email = 'caio.santos@gmail.com'
-    WHERE ID = 1;
-"""
-
-#UPDATE compras
-#    SET status = 'expirado'
-#    WHERE status = 'ativo' AND data_expiracao <= NOW();
+    UPDATE compras
+    SET status = 'expirado'
+    WHERE status = 'ativo' AND data_expiracao <= NOW();"""
 
 cursor.execute(update)
 conn.commit()
