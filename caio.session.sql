@@ -93,4 +93,4 @@ SELECT * FROM compras;
 UPDATE compras
 SET Numero_cartao = 1234567812345678
 WHERE ID = 1;
->>>>>>> c68a30706e58e9676c8c662a826a69c7f52160ca
+    
