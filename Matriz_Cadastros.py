@@ -21,9 +21,10 @@ def gerar_cpf():
 
 # Função para gerar senha criptografada (simples hash)
 def gerar_senha():
-    senha = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-    return hashlib.sha256(senha.encode()).hexdigest()
+    senha = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+    return senha
 
+    
 def gerar_data_criacao():
     # Gera uma data entre 1º janeiro de 2022 e hoje
     inicio = datetime(2022, 1, 1)
@@ -34,7 +35,7 @@ def gerar_data_criacao():
     return data.strftime('%Y-%m-%d %H:%M:%S')
 
 # Inserindo os dados
-for _ in range(10000):
+for _ in range(40000):
     nome = faker.name()
     cpf = gerar_cpf()
     data_nascimento = faker.date_of_birth(minimum_age=18, maximum_age=90).strftime('%Y-%m-%d')

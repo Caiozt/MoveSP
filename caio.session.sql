@@ -5,6 +5,7 @@ INSERT INTO {
 =======
 USE movesp;
 
+
 DROP TABLE cliente;
 
 DROP TABLE plano;
@@ -45,12 +46,20 @@ CREATE TABLE Compras (
     FOREIGN KEY (plano_id) REFERENCES plano(id)
 );
 
+
+DROP EVENT IF EXISTS atualizar_status_expirado;
+
 CREATE EVENT atualizar_status_expirado
 ON SCHEDULE EVERY 1 DAY
 DO
     UPDATE compras
     SET status = 'expirado'
     WHERE status = 'ativo' AND Data_expiracao <= NOW();
+
+SHOW CREATE EVENT atualizar_status_expirado;
+
+SET GLOBAL event_scheduler =ON;
+
 --Funçao para  ver status dos usuarios finamicamente
 CREATE VIEW compras_view AS
 SELECT 
@@ -62,9 +71,15 @@ SELECT
     END AS status_atual
 FROM compras;
 
-SHOW CREATE EVENT atualizar_status_expirado;
+SELECT * FROM compras_view;
 
-SET GLOBAL event_scheduler =ON;
+CREATE OR REPLACE VIEW compras_ativas AS
+SELECT *
+FROM compras
+WHERE status = 'ativo' AND Data_expiracao > NOW();
+
+SELECT * FROM compras_ativas;
+
 --Para chamar o VIEW
 SELECT * FROM Plano;
 
@@ -94,3 +109,47 @@ UPDATE compras
 SET Numero_cartao = 1234567812345678
 WHERE ID = 1;
     
+USE movesp;
+
+
+CREATE OR REPLACE VIEW compras_resumida AS
+SELECT 
+    cp.ID,
+    c.Nome AS Nome_cliente,
+    p.Nome AS Nome_plano,
+    CASE 
+        WHEN cp.status = 'cancelado' THEN 'cancelado'
+        WHEN cp.Data_expiracao <= NOW() THEN 'expirado'
+        ELSE 'ativo'
+    END AS status_atual
+FROM Compras cp
+JOIN cliente c ON cp.cliente_id = c.ID
+JOIN Plano p ON cp.Plano_id = p.ID;
+
+DROP VIEW IF EXISTS compras_ativas;
+
+CREATE OR REPLACE VIEW compras_ativas AS
+SELECT 
+    cp.ID,
+    c.Nome AS Nome_cliente,
+    p.Nome AS Nome_plano,
+    CASE 
+        WHEN cp.status = 'cancelado' THEN 'cancelado'
+        WHEN cp.Data_expiracao <= NOW() THEN 'expirado'
+        ELSE 'ativo'
+    END AS status_atual
+FROM Compras cp
+JOIN cliente c ON cp.cliente_id = c.ID
+JOIN Plano p ON cp.Plano_id = p.ID
+WHERE
+    CASE 
+        WHEN cp.status = 'cancelado' THEN 'cancelado'
+        WHEN cp.Data_expiracao <= NOW() THEN 'expirado'
+        ELSE 'ativo'
+    END = 'ativo';
+
+
+SELECT * FROM plano;
+
+
+

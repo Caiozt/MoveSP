@@ -1,24 +1,25 @@
 import mysql.connector
 import random
 from faker import Faker
+
 faker = Faker('pt_BR')
 
 conn = mysql.connector.connect(host="localhost", user="root", password="caio", database="movesp")
 cursor = conn.cursor()
 
-# IDs de clientes únicos
-ids_clientes = random.sample(range(1, 10001), 5000)
+# Seleciona 30.000 clientes aleatórios de um total de 60.000
+ids_clientes = random.sample(range(1, 40001), 30000)
 
-# Planos já cadastrados
+# Mapas de duração por plano
 duracoes = {1: 30, 2: 60, 3: 90}
 
 for cliente_id in ids_clientes:
-    plano_id = random.randint(2, 3)
+    plano_id = random.randint(1, 2)
     nome_cartao = faker.name()
-    numero_cartao = int(''.join([str(random.randint(0, 9)) for _ in range(4)]))
+    numero_cartao = random.randint(1000, 9999)
     expiracao_cartao = faker.date_between(start_date='+1y', end_date='+5y').strftime('%Y-%m-%d')
     cvc = random.randint(100, 999)
-    data_compra = faker.date_between(start_date='-2y', end_date='today').strftime('%Y-%m-%d %H:%M:%S')
+    data_compra = faker.date_between(start_date='-3y', end_date='today').strftime('%Y-%m-%d %H:%M:%S')
     duracao = duracoes[plano_id]
 
     cursor.execute("""
