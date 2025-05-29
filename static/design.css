@@ -1,121 +1,100 @@
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Layout geral */
 body {
-    background-color: #fff0f0;
-    color: #4a0000;
-    padding: 20px;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("../static/FundoMoveSP.jpeg");
+    background-size: cover;
+    background-position: center;
 }
 
-/* Header */
 header {
-    background-color: #a668d3;
+    width: 100%;
+    background-color: #a55fd1;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
     color: white;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 30px;
+    font-weight: bold;
+    text-align: center;
+    flex-grow: 1;
 }
 
-header h1 {
-    margin-bottom: 10px;
+.menu-icon {
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
 }
 
-nav a {
+.menu {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #a55fd1;
+    padding: 0.5rem 0;
+}
+
+.menu.show {
+    display: flex;
+}
+
+.menu a {
     color: black;
     text-decoration: none;
-    margin-right: 140px;
+    padding: 1rem 2rem;
     font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Main content */
-main {
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(179, 0, 0, 0.2);
-    max-width: 600px;
-    margin: auto;
-}
-
-/* Formulários */
-form {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px);
+    padding: 2rem;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
 }
 
 form label {
     font-weight: bold;
+    margin-top: 1rem;
+    display: block;
 }
 
-form input,
-form textarea,
-form select {
-    padding: 10px;
+form input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.2rem;
+    border: 1px solid #a55fd1;
     border-radius: 5px;
-    border: 1px solid #CDA8E7;
 }
 
 form button {
-    background-color: #CDA8E7;
+    margin-top: 1.5rem;
+    width: 100%;
+    background-color: #a55fd1;
     color: white;
-    padding: 12px;
+    padding: 0.8rem;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-form button:hover {
-    background-color: #B57EDC;
-}
-
-.menu-vertical {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 160px;
-    background-color: #CDA8E7;
-    padding-top: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding-left: 10px;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.menu-vertical a {
-    color: white;
-    text-decoration: none;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 10px;
-    width: 100%;
-    transition: background 0.3s;
+    cursor: pointer;
 }
-
-.menu-vertical a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-main {
-    margin-left: 180px; /* espaço para o menu lateral */
-    padding: 20px;
-}
-
-
